@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { mock } from "node:test";
 
+
+export const dynamic = 'force-dynamic'
 const images = [
   "https://images.pexels.com/photos/18374429/pexels-photo-18374429/free-photo-of-antique-lamp-against-hill-behind-building.jpeg",
   "https://images.pexels.com/photos/15818869/pexels-photo-15818869/free-photo-of-person-riding-extremely-packed-bike.jpeg",
