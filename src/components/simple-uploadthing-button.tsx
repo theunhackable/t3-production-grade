@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { useUploadThing } from "~/utils/uploadthing";
 // import { toast } from "sonner";
 // import { usePostHog } from "posthog-js/react";
@@ -72,12 +73,27 @@ function UploadSVG() {
 // }
 
 export function SimpleUploadButton() {
-  const { inputProps } = useUploadThingInputProps("imageUploader");
+  const router = useRouter();
+  const { inputProps } = useUploadThingInputProps("imageUploader", {
+    onUploadBegin() {
+      toast.loading("Uploading ...", {
+        duration: 10000,
+        id: 'upload-begin'
+      })
+    },
+    onClientUploadComplete() {
+      toast.dismiss('upload-begin')
+      toast.success('Upload Complete', {
+        duration: 3000
+      })
+      router.refresh();
+    },
+  });
   return (
     <div>
       <label
         htmlFor="upload-button"
-        className="flex items-center gap-2 cursor-pointer rounded-full bg-blue-500 px-4 py-2 text-sm font-semibold hover:bg-blue-500/90 "
+        className="flex cursor-pointer items-center gap-2 rounded-full bg-blue-500 px-4 py-2 text-sm font-semibold hover:bg-blue-500/90 "
       >
         <span>Upload</span>
         <span>
