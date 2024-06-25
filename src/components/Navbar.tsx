@@ -7,6 +7,7 @@ import {
 } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/utils/uploadthing";
+import { SimpleUploadButton } from "./simple-uploadthing-button";
 const Navbar = () => {
   const router = useRouter()
   return (
@@ -19,7 +20,7 @@ const Navbar = () => {
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UploadButton endpoint='imageUploader' onClientUploadComplete={() => {router.refresh()}}/>
+        <SimpleUploadButton />
           <UserButton />
         </SignedIn>
       </div>
